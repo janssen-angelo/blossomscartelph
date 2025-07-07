@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blossoms Cartel | Flower Order Form</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff0f5 0%, #f0fff0 100%);
+      color: #333;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 30px 20px 10px 20px;
+      background: linear-gradient(90deg, #ffe4e1 60%, #e0f7fa 100%);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+    header img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 4px solid #c2185b;
+      background: #fff;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #c2185b;
+      letter-spacing: 2px;
+    }
+    .nav-links {
+      margin: 10px 0 0 0;
+    }
+    .nav-links a {
+      color: #c52b47;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: #c2185b;
+      text-decoration: underline;
+    }
+        .form-container {
+        position: relative;
+        z-index: 1;       
+        max-width: 750px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 35px 30px 30px 30px;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+}
+
+    h2 {
+      color: #c52b47;
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 2em;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    input[type="radio"], input[type="checkbox"] {
+      width: auto;
+      margin-right: 10px;
+    }
+    .checkbox-group label {
+      display: inline-block;
+      margin-right: 18px;
+      font-weight: 400;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .form-actions {
+      text-align: center;
+      margin-top: 25px;
+    }
+    button {
+      background: linear-gradient(90deg, #c2185b 60%, #ce5097 100%);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(76, 175, 80, 0.08);
+    }
+    button:hover {
+      background: linear-gradient(90deg, #a11349 60%, #ce5097 100%);
+    }
+    .flower-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0 20px 0;
+      background: #fafafa;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(76, 175, 80, 0.07);
+    }
+    .flower-table th, .flower-table td {
+      border: 1px solid #e0e0e0;
+      padding: 12px 10px;
+      text-align: center;
+    }
+    .flower-table th {
+      background: #ffe4e1;
+      color: #c2185b;
+      font-size: 1.1em;
+    }
+    .flower-table tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .summary-box {
+      background: #e0f7fa;
+      border-radius: 10px;
+      padding: 18px;
+      margin: 20px 0 0 0;
+      font-size: 1.1em;
+      color: #333;
+      display: none;
+    }
+    .fun-banner {
+      background: linear-gradient(90deg, #fceabb 60%, #f8b500 100%);
+      color: #c2185b;
+      text-align: center;
+      font-size: 1.2em;
+      padding: 10px 0;
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.95em;
+      color: #777;
+      background: #f0fff0;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 40px;
+    }
+
+  .floating-flowers {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.floating-flowers span {
+  position: absolute;
+  display: inline-block;
+  font-size: 24px;
+  opacity: 0.6;
+  animation: floatFlower 25s linear infinite;
+}
+
+.floating-flowers span:nth-child(1) { left: 3%; top: 100%; animation-delay: 0s; }
+.floating-flowers span:nth-child(2) { left: 8%; top: 110%; animation-delay: 2s; }
+.floating-flowers span:nth-child(3) { left: 13%; top: 105%; animation-delay: 3s; }
+.floating-flowers span:nth-child(4) { left: 18%; top: 95%; animation-delay: 4s; }
+.floating-flowers span:nth-child(5) { left: 22%; top: 120%; animation-delay: 5s; }
+.floating-flowers span:nth-child(6) { left: 27%; top: 100%; animation-delay: 6s; }
+.floating-flowers span:nth-child(7) { left: 31%; top: 110%; animation-delay: 7s; }
+.floating-flowers span:nth-child(8) { left: 36%; top: 90%; animation-delay: 8s; }
+.floating-flowers span:nth-child(9) { left: 41%; top: 115%; animation-delay: 9s; }
+.floating-flowers span:nth-child(10) { left: 45%; top: 105%; animation-delay: 0s; }
+.floating-flowers span:nth-child(11) { left: 50%; top: 95%; animation-delay: 1s; }
+.floating-flowers span:nth-child(12) { left: 54%; top: 120%; animation-delay: 2s; }
+.floating-flowers span:nth-child(13) { left: 58%; top: 110%; animation-delay: 3s; }
+.floating-flowers span:nth-child(14) { left: 62%; top: 100%; animation-delay: 4s; }
+.floating-flowers span:nth-child(15) { left: 66%; top: 90%; animation-delay: 5s; }
+.floating-flowers span:nth-child(16) { left: 70%; top: 115%; animation-delay: 6s; }
+.floating-flowers span:nth-child(17) { left: 74%; top: 105%; animation-delay: 7s; }
+.floating-flowers span:nth-child(18) { left: 78%; top: 95%; animation-delay: 8s; }
+.floating-flowers span:nth-child(19) { left: 82%; top: 120%; animation-delay: 9s; }
+.floating-flowers span:nth-child(20) { left: 86%; top: 100%; animation-delay: 0s; }
+.floating-flowers span:nth-child(21) { left: 90%; top: 110%; animation-delay: 1s; }
+.floating-flowers span:nth-child(22) { left: 94%; top: 90%; animation-delay: 2s; }
+.floating-flowers span:nth-child(23) { left: 97%; top: 115%; animation-delay: 3s; }
+.floating-flowers span:nth-child(24) { left: 99%; top: 105%; animation-delay: 4s; }
+
+@keyframes floatFlower {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-50vh) rotate(180deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Slideshow styles */
+.slideshow-container {
+  max-width: 700px;
+  position: relative;
+  margin: 30px auto 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(194,24,91,0.10);
+  background: #fff;
+  z-index: 2;
+}
+.slideshow-slide {
+  display: none;
+  width: 100%;
+  height: 320px;
+  text-align: center;
+}
+.slideshow-slide img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 18px;
+}
+.slideshow-prev, .slideshow-next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 12px;
+  margin-top: -22px;
+  color: #c2185b;
+  font-weight: bold;
+  font-size: 28px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background: rgba(255,255,255,0.7);
+  transition: background 0.2s;
+  z-index: 3;
+}
+.slideshow-next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.slideshow-prev:hover, .slideshow-next:hover {
+  background: #ffe4e1;
+}
+.fade {
+  animation-name: fade;
+  animation-duration: 1s;
+}
+@keyframes fade {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/491401028_29506535462293107_5159411170713999380_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEUpnUd89eDLiK1cuYea25s1PQIeNTMVMLU9Ah41MxUwoTZB9ryj4tWt2NJAPZyqx8R1uIlXPgu_fR1_oFl_wt5&_nc_ohc=Tu9w-pCdy2AQ7kNvwE_GWwj&_nc_oc=Adkky3TASlnqMQkadvfl35UBjkcmhNypcxN1rSsVnJKXgaIt0wtxRtfRGfsPU5KrW856BXS_V-mISSDwbq5ZkixE&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=NpvAkLSsywFLoUzjZBP-Fg&oh=00_AfRTnRxc_gmEAleEqtIwAIwPn1I-E-a8Gr8bzEjW0isrnQ&oe=68702ECA" alt="Blossoms Cartel Logo">
+  <h1>Blossoms Cartel</h1>
+  <p>Fresh Blooms Delivered with Love</p>
+  <div class="nav-links">
+    <a href="https://www.gardendesign.com/flowers/" target="_blank">Flower Care Guide</a>
+    <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+    <a href="#orderForm">Order Now</a>
+    <a href="mailto:blossomscartelph@gmail.com">Contact Us</a>
+  </div>
+</header>
+<div class="fun-banner">🌸 Enjoy 10% off on your first order! 🌸</div>
+
+<div class="slideshow-container">
+  <div class="slideshow-slide fade">
+    <img src="tulips.jpg" alt="Tulips">
+  </div>
+  <div class="slideshow-slide fade">
+    <img src="roses.jpg" alt="Roses">
+  </div>
+  <div class="slideshow-slide fade">
+    <img src="sunflower.jpg" alt="Sunflowers">
+  </div>
+  <div class="slideshow-slide fade">
+    <img src="lily.jpg" alt="Lilies">
+  </div>
+  <div class="slideshow-slide fade">
+    <img src="hydra.jpg" alt="Hydrangea">
+  </div>
+  <a class="slideshow-prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="slideshow-next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<div class="form-container" id="orderForm">
+  <h2>Place Your Order</h2>
+  <table class="flower-table">
+    <thead>
+      <tr>
+        <th>Flower</th>
+        <th>Description</th>
+        <th>Price (per stem)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Tulips</td><td>Elegant, colorful spring blooms</td><td>₱160</td></tr>
+      <tr><td>Roses</td><td>Classic symbol of love</td><td>₱180</td></tr>
+      <tr><td>Sunflowers</td><td>Bright and cheerful</td><td>₱150</td></tr>
+      <tr><td>Lilies</td><td>Fragrant and graceful</td><td>₱170</td></tr>
+      <tr><td>Hydrangea</td><td>Full, lush clusters</td><td>₱190</td></tr>
+    </tbody>
+  </table>
+  <form id="flowerOrderForm">
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" name="fullname" required>
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" placeholder="09XXXXXXXXX" required>
+
+    <label for="flower">Choose Your Flower:</label>
+    <select id="flower" name="flower" required>
+      <option value="">-- Select a flower --</option>
+      <option value="Tulips">Tulips</option>
+      <option value="Roses">Roses</option>
+      <option value="Sunflowers">Sunflowers</option>
+      <option value="Lilies">Lilies</option>
+      <option value="Hydrangea">Hydrangea</option>
+    </select>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" min="1" required>
+
+    <label>Wrap Color:</label>
+    <input type="radio" name="wrap" value="Pink" required> Pink
+    <input type="radio" name="wrap" value="White"> White
+    <input type="radio" name="wrap" value="Blue"> Blue
+    <input type="radio" name="wrap" value="Kraft"> Kraft Brown
+
+    <label>Bouquet Add-ons:</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="addons" value="Chocolates"> Chocolates</label>
+      <label><input type="checkbox" name="addons" value="Teddy Bear"> Teddy Bear</label>
+      <label><input type="checkbox" name="addons" value="Greeting Card"> Greeting Card</label>
+      <label><input type="checkbox" name="addons" value="Balloon"> Balloon</label>
+    </div>
+
+    <label for="deliveryDate">Preferred Delivery Date:</label>
+    <input type="date" id="deliveryDate" name="deliveryDate" required>
+
+    <label for="deliveryTime">Preferred Delivery Time:</label>
+    <select id="deliveryTime" name="deliveryTime" required>
+      <option value="">-- Select a time --</option>
+      <option value="Morning">Morning (8am-12pm)</option>
+      <option value="Afternoon">Afternoon (12pm-4pm)</option>
+      <option value="Evening">Evening (4pm-8pm)</option>
+    </select>
+
+    <label for="dedication">Dedication / Notes (optional):</label>
+    <textarea id="dedication" name="dedication" rows="4" placeholder="Optional message or instructions..."></textarea>
+
+    <div class="form-actions">
+      <button type="button" onclick="summarizeOrder()">Preview Order</button>
+      <button type="submit">Submit Order</button>
+    </div>
+  </form>
+  <div class="summary-box" id="orderSummary"></div>
+</div>
+
+<footer>
+  &copy; 2025 Blossoms Cartel. All rights reserved. | <a href="https://www.gardendesign.com/flowers/" target="_blank">Flower Care Tips</a>
+</footer>
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxikZ_d6v5xQa4kYIrOaoM9xAS2DSAgFq15v7xfZDM2pvFGTYKmPIMw9qP0BdHZZhI/exec';
+  const form = document.getElementById('flowerOrderForm');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    fetch(scriptURL, {
+      method: 'POST',
+      body: new FormData(form)
+    })
+    .then(response => {
+      alert("Order submitted successfully!");
+      form.reset();
+      document.getElementById('orderSummary').style.display = 'none';
+    })
+    .catch(error => alert('Error!', error.message));
+  });
+
+ function summarizeOrder() {
+  const name = document.getElementById('fullname').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const flower = document.getElementById('flower').value;
+  const quantity = parseInt(document.getElementById('quantity').value) || 0;
+  const wrap = document.querySelector('input[name="wrap"]:checked');
+  const deliveryDate = document.getElementById('deliveryDate').value;
+  const deliveryTime = document.getElementById('deliveryTime').value;
+  const dedication = document.getElementById('dedication').value;
+  const addons = document.querySelectorAll('input[name="addons"]:checked');
+
+  const prices = {
+    "Tulips": 160,
+    "Roses": 180,
+    "Sunflowers": 150,
+    "Lilies": 170,
+    "Hydrangea": 190
+  };
+
+  const flowerPrice = prices[flower] || 0;
+  const total = flowerPrice * quantity;
+
+  let addonsList = [];
+  addons.forEach(function(addon) {
+    addonsList.push(addon.value);
+  });
+
+  let summary = `<strong>Name:</strong> ${name}<br>`;
+  summary += `<strong>Email:</strong> ${email}<br>`;
+  summary += `<strong>Phone:</strong> ${phone}<br>`;
+  summary += `<strong>Flower:</strong> ${flower} (₱${flowerPrice} per stem)<br>`;
+  summary += `<strong>Quantity:</strong> ${quantity}<br>`;
+  summary += `<strong>Wrap Color:</strong> ${wrap ? wrap.value : ''}<br>`;
+  summary += `<strong>Add-ons:</strong> ${addonsList.length > 0 ? addonsList.join(', ') : 'None'}<br>`;
+  summary += `<strong>Delivery Date:</strong> ${deliveryDate}<br>`;
+  summary += `<strong>Delivery Time:</strong> ${deliveryTime}<br>`;
+  summary += `<strong>Dedication/Notes:</strong> ${dedication ? dedication : 'None'}<br>`;
+  summary += `<hr><strong>Total Price:</strong> ₱${total.toLocaleString()}<br>`;
+
+  document.getElementById('orderSummary').innerHTML = summary;
+  document.getElementById('orderSummary').style.display = 'block';
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("slideshow-slide");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slides[slideIndex-1].style.display = "block";
+}
+
+setInterval(function() {
+  plusSlides(1);
+}, 3500);
+</script>
+
+<div class="floating-flowers">
+  <span>🌸</span><span>🌼</span><span>🌺</span><span>🌻</span><span>💐</span><span>🌷</span><span>🌸</span><span>🌼</span>
+  <span>🌺</span><span>🌸</span><span>🌻</span><span>💐</span><span>🌼</span><span>🌷</span><span>🌸</span><span>🌺</span>
+  <span>🌼</span><span>🌸</span><span>💐</span><span>🌷</span><span>🌻</span><span>🌼</span><span>🌺</span><span>🌸</span>
+</div>
+
+</body>
+</html>
